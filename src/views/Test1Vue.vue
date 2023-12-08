@@ -12,6 +12,18 @@ const newList = ref('')
 
 const isAllDone = ref(false)
 
+
+
+function addClass(v){
+  if( v == 0) {
+    return 'input-normal'
+  }else if( v == 1){
+    return 'input-error'
+  }else if( v >= 2){
+    return 'input-success'
+  }
+}
+
 function addList() {
   if(!newList.value.length) {
     return
@@ -64,9 +76,6 @@ function removeList(item) {
   carList.value = carList.value.filter((list) => list !== item )
   setList()
 }
-const rules = [
-  value => (value.length  && value.length >= 2) || 'Min 2 characters',
-]
 
 </script>
 
@@ -77,7 +86,7 @@ const rules = [
     class="py-8 px-5 mx-auto"
     >
     <div class="mb-5 d-flex flex-row justify-space-between">
-      <v-text-field v-model.trim="newList" color="blue" :rules="rules" class="w-100 me-3 ps-2" density="compact" @keyup.enter="addList" placeholder="請輸入購物清單"></v-text-field>
+      <input v-model.trim="newList" class="w-100 me-3 ps-2" :class="addClass(newList.length)" @keyup.enter="addList" placeholder="請輸入購物清單">
       <v-btn size="small" class="mt-2" @click="addList">新增</v-btn>
     </div>
     <div v-if="carList.length">
@@ -98,3 +107,21 @@ const rules = [
   </v-card>
 
 </template>
+
+<style scoped>
+  .input-normal {
+    outline-style: none;
+    border: 2px solid #555;
+    border-radius: 8px
+  }
+  .input-error {
+    outline-style: none;
+    border: 2px solid #d74444;
+    border-radius: 8px
+  }
+  .input-success {
+    outline-style: none;
+    border: 2px solid rgb(89, 185, 223);
+    border-radius: 8px
+  }
+</Style>
