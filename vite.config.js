@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  base: process.env.NODE_ENV === 'production' ? '/vite-project/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Acmepoint/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
