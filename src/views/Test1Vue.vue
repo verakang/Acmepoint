@@ -48,13 +48,11 @@ function toggleStatus() {
   if (isAllDone.value === true){
     carList.value.forEach( item => {
       item.done = true
-      console.log('a1 批次',carList.value)
       setList()
     })
   }else {
     carList.value.forEach( item => {
       item.done = false
-      console.log('a2 批次',carList.value)
       setList()
     })
   }
