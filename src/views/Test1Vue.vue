@@ -40,9 +40,7 @@ function addList() {
 }
 
 function setList() {
-  console.log('2 setItem的資料',JSON.stringify(carList.value))
   sessionStorage.setItem('data', JSON.stringify(carList.value));
-  console.log('3 getItem的資料',JSON.parse(sessionStorage.getItem('data')))
 }
 
 function toggleStatus() {
@@ -63,7 +61,6 @@ function toggleStatus() {
 }
 
 function checkList() {
-  console.log('1 checkbox',carList.value)
   setList()
 }
 
@@ -96,7 +93,7 @@ function removeList(item) {
       </ul>
     <ul>
       <li v-for="item in carList" :key="item.id" class="d-flex flex-row justify-space-between my-2">
-        <label :class="{ 'text-decoration-line-through': item.done }"><input type="checkbox" id="checkbox" class="me-2" v-model="item.done" @click="checkList">{{ item.buyItem }}<span class="ms-2 text-green-lighten-2 text-body-2">{{ item.done ? '已完成' : '未完成' }}</span></label>
+        <label :class="{ 'text-decoration-line-through': item.done }"><input type="checkbox" id="checkbox" class="me-2" v-model="item.done" @change="checkList">{{ item.buyItem }}<span class="ms-2 text-green-lighten-2 text-body-2">{{ item.done ? '已完成' : '未完成' }}</span></label>
         <v-btn size="small" class="ms-3 bg-red-lighten-4" @click="removeList(item)">刪除</v-btn>
       </li>
     </ul>
